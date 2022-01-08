@@ -53,16 +53,20 @@ class App(tk.Frame):
 
         self.cbox_list_passwords = ttk.Combobox(self)
         self.cbox_list_passwords["values"] = get_values()
-        self.cbox_list_passwords.place(x=0, y=0)
+        self.cbox_list_passwords.grid(column=1, row=0)
         self.cbox_list_passwords.bind("<<ComboboxSelected>>", self.update_value)
 
-        # self.hi_there = tk.Button(self)
-        # self.hi_there["text"] = "Hola mundo\n(dame click)"
-        # self.hi_there["command"] = self.say_hi
-        # self.hi_there.pack(side="top")
-        # self.quit = tk.Button(self, text="Salir", fg="red",
-        #                       command=self.master.destroy)
-        # self.quit.pack(side="bottom")
+        # Panel:
+        self.panel_update_values = tk.PanedWindow(bd=4, relief="raised", bg="green")
+        self.panel_update_values.pack(fill=BOTH, expand=1)
+        label_title_panel = Label(self.panel_update_values, text="Setear valores:")
+        label_title_panel.grid(column=0, row=0)
+        self.panel_update_values.add(label_title_panel)
+
+        # self.exit_button = tk.Button(self, text=cfg.gui["exit_button_text"], 
+        #                 fg="red", command=self.master.destroy)
+        # self.exit_button.grid(column=0, row=5)
+        # self.exit_button.pack(side="bottom")  #NO
 
     def update_value(self, event):
         # Mostrar un MessageBox para setear los valores, y guardarlos.
@@ -75,6 +79,9 @@ class App(tk.Frame):
     def say_hi(self):
         print("Hola mundo")
 
+
+# class MessageBox(tk.M):
+#     pass
 
 if __name__ == "__main__":
     init()
