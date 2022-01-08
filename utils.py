@@ -2,6 +2,7 @@ import cryptography
 from cryptography.fernet import Fernet
 
 KEY_PATH = "data/key.key"
+DATA_PATH = "data/my_keys.json"
 
 def get_file(path):
     pass
@@ -14,7 +15,7 @@ def generate_key() -> bytes:
     return key
 
 
-def get_key():
+def get_key() -> bytes:
     with open(KEY_PATH) as file:
         key = file.read()
     
@@ -24,7 +25,17 @@ def get_key():
 
 
 def encrypt(path: str):
-    pass
+    with open(KEY_PATH, "rb") as filekey:
+        key = filekey.read()
+    
+    fernet = Fernet(key)
+
+    with open(DATA_PATH, "rb") as file:
+        data = file.read()
+    encrypted_data = fernet.encrypt(data)
+
+    with open(DATA_PATH, "wb") as encrypted_file:
+        encrypted_file.write(encrypted_data)
 
 
 def decrypt(path: str):
