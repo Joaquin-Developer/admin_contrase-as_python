@@ -1,3 +1,4 @@
+import json
 import cryptography
 from cryptography.fernet import Fernet
 
@@ -13,6 +14,14 @@ def read_file(path, args="r") -> str:
 def write_file(path, args, data) -> None:
     with open(path, args) as file:
         file.write(data)
+
+
+def string_to_json(data: str):
+    return json.loads(data)
+    
+
+def json_to_string(json_data) -> str:
+    return json.dumps(json_data)
 
 
 def generate_key() -> bytes:
