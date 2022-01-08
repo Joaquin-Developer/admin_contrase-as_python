@@ -17,15 +17,11 @@ def write_file(path, args, data) -> None:
 
 def generate_key() -> bytes:
     key = Fernet.generate_key()
-    # with open(KEY_PATH, "wb") as file:
-    #     file.write(key)
     write_file(KEY_PATH, "wb", key)
     return key
 
 
 def get_key() -> bytes:
-    # with open(KEY_PATH) as filekey:
-    #     key = filekey.read()
     key = read_file(KEY_PATH)
     
     if key is None: # or len(key) == 0: 
@@ -35,12 +31,8 @@ def get_key() -> bytes:
 
 def encrypt_and_save(path: str):
     fernet = Fernet(get_key())
-    # with open(path, "rb") as file:
-    #     data = file.read()
     data = read_file(path, args="rb")
     encrypted_data = fernet.encrypt(data)
-    # with open(path, "wb") as encrypted_file:
-    #     encrypted_file.write(encrypted_data)
     write_file(path, "wb", encrypted_data)
 
 
