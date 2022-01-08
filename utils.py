@@ -1,3 +1,5 @@
+import cryptography
+from cryptography.fernet import Fernet
 
 
 def get_file(path):
