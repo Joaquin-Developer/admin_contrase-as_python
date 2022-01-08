@@ -56,17 +56,32 @@ class App(tk.Frame):
         self.cbox_list_passwords.grid(column=1, row=0)
         self.cbox_list_passwords.bind("<<ComboboxSelected>>", self.update_value)
 
+        # Agregar botón para modificar...
+        """
+        Funciones a implementar:
+            - Agregar contraseñas
+            - Update contraseñas (nombre, red, contraseña)
+            - Eliminar contraseñas
+        """
+
         # Panel:
-        self.panel_update_values = tk.PanedWindow(bd=4, relief="raised", bg="green")
-        self.panel_update_values.pack(fill=BOTH, expand=1)
+        # self.panel_update_values = tk.PanedWindow(bd=4, relief="raised", bg="green")
+        self.panel_update_values = tk.PanedWindow()
+        
+        self.panel_update_values.pack()
         label_title_panel = Label(self.panel_update_values, text="Setear valores:")
-        label_title_panel.grid(column=0, row=0)
+        # label_title_panel.grid(column=0, row=0)
         self.panel_update_values.add(label_title_panel)
 
-        # self.exit_button = tk.Button(self, text=cfg.gui["exit_button_text"], 
-        #                 fg="red", command=self.master.destroy)
-        # self.exit_button.grid(column=0, row=5)
-        # self.exit_button.pack(side="bottom")  #NO
+        entry_site = tk.Entry(self.panel_update_values)
+        entry_username = tk.Entry(self.panel_update_values)
+        entry_password = tk.Entry(self.panel_update_values)
+        self.panel_update_values.add(entry_site)
+        self.panel_update_values.add(entry_username)
+        self.panel_update_values.add(entry_password)
+
+    def update_selected_value(self):
+        pass
 
     def update_value(self, event):
         # Mostrar un MessageBox para setear los valores, y guardarlos.
@@ -76,12 +91,6 @@ class App(tk.Frame):
         data = get_specific_value(name)
         update_and_save_value(data)
 
-    def say_hi(self):
-        print("Hola mundo")
-
-
-# class MessageBox(tk.M):
-#     pass
 
 if __name__ == "__main__":
     init()
