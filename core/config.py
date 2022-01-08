@@ -1,0 +1,1 @@
+APP_NAME = "Administrador de Contraseñas"
