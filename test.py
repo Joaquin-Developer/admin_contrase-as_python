@@ -29,9 +29,8 @@ def main():
 
 
 def load():
-    with open("data/test.json") as file:
-        data = file.read()
-
+    data = utils.read_file("data/test.json")
+    
     print(data)
     json_data = json.loads(data)
     print(json_data)
