@@ -18,7 +18,7 @@ def get_key():
     with open(KEY_PATH) as file:
         key = file.read()
     
-    if key is None: # or len(key) == 0:
+    if key is None: # or len(key) == 0: 
         return generate_key()
     return key
 
