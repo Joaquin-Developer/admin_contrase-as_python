@@ -18,7 +18,7 @@ def write_file(path, args, data) -> None:
 
 def string_to_json(data: str):
     return json.loads(data)
-    
+
 
 def json_to_string(json_data) -> str:
     return json.dumps(json_data)
@@ -38,14 +38,16 @@ def get_key() -> bytes:
     return key
 
 
-def encrypt_and_save(path: str):
+def encrypt_and_save(path: str, data=None):
     fernet = Fernet(get_key())
-    data = read_file(path, args="rb")
+    if data is None:
+        data = read_file(path, args="rb")
+        
     encrypted_data = fernet.encrypt(data)
     write_file(path, "wb", encrypted_data)
 
 
-def decrypt(path: str):
+def decrypt_and_get(path: str):
     fernet = Fernet(get_key())
     encrypted_data = read_file(path, args="rb")
     decrypted_data = fernet.decrypt(encrypted_data)
